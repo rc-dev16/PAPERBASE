@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Paperbase Design System - Warm Academic Palette */
+    /* No gradients - solid colors only */
+    
+    --background: 36 33% 97%; /* #FAF8F5 warm cream */
+    --foreground: 0 0% 13%; /* #212121 deep charcoal */
+
+    --card: 0 0% 100%; /* Pure white */
+    --card-foreground: 0 0% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 13%;
+
+    --primary: 24 88% 41%; /* #C4510B burnt orange */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 36 20% 92%; /* #EDE9E3 warm grey */
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 36 15% 90%; /* #E8E4DE */
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 24 88% 41%; /* Same as primary */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 36 15% 85%; /* #DAD5CE warm border */
+    --input: 36 15% 85%;
+    --ring: 24 88% 41%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --paper-white: 0 0% 100%;
+    --text-primary: 0 0% 13%;
+    --text-secondary: 0 0% 45%;
+    --text-tertiary: 0 0% 60%;
+    --surface-elevated: 0 0% 100%;
+    --surface-sunken: 36 20% 94%;
+    
+    /* Shadows - subtle, warm */
+    --shadow-sm: 0 1px 2px 0 hsl(36 15% 50% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(36 15% 50% / 0.08), 0 2px 4px -2px hsl(36 15% 50% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(36 15% 50% / 0.1), 0 4px 6px -4px hsl(36 15% 50% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(36 15% 50% / 0.1), 0 8px 10px -6px hsl(36 15% 50% / 0.05);
+
+    --sidebar-background: 36 25% 95%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 24 88% 41%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 36 20% 90%;
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 36 15% 85%;
+    --sidebar-ring: 24 88% 41%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 36 20% 92%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 36 20% 92%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 36 20% 92%;
+
+    --primary: 24 80% 55%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 36 20% 92%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 24 80% 55%;
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 24 80% 55%;
+
+    --paper-white: 0 0% 15%;
+    --text-primary: 36 20% 92%;
+    --text-secondary: 0 0% 65%;
+    --text-tertiary: 0 0% 50%;
+    --surface-elevated: 0 0% 12%;
+    --surface-sunken: 0 0% 6%;
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 36 20% 92%;
+    --sidebar-primary: 24 80% 55%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 36 20% 92%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 24 80% 55%;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+  
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
