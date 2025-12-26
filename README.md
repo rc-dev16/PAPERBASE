@@ -31,7 +31,6 @@
   <!-- AI / Hosting -->
   <img src="https://img.shields.io/badge/AI-Google%20Gemini-4285F4?style=flat-square&logo=google&logoColor=white" />
   <img src="https://img.shields.io/badge/Hosting-Railway-0B0D0E?style=flat-square&logo=railway&logoColor=white" />
-  <img src="https://img.shields.io/badge/Frontend%20Hosting-Vercel-000000?style=flat-square&logo=vercel&logoColor=white" />
 </p>
 
 <p align="center">
@@ -181,8 +180,9 @@ Frontend (React + Vite)
 
 ### Frontend
 
-- **Vercel**
-- Custom domain (required for Clerk production)
+- **Railway**
+- Static file server (Express) serving built Vite app
+- Custom domain support (configure in Railway)
 
 ### Backend
 
@@ -368,28 +368,40 @@ npm run lint             # Lint code
 
 ## 🚢 Deployment
 
-### Frontend (Vercel)
+### Frontend (Railway)
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run: `vercel`
-3. Add environment variables in Vercel dashboard
-4. Configure custom domain (required for Clerk production)
+1. Connect your repository to Railway
+2. Create a new service for the frontend
+3. **Root Directory:** Leave as root (`.`)
+4. **Build Command:** `npm run build` (auto-detected)
+5. **Start Command:** `npm start` (auto-detected)
+6. Add environment variables:
+   - `VITE_CLERK_PUBLISHABLE_KEY` (your Clerk publishable key)
+   - `VITE_SUPABASE_URL` (your Supabase project URL)
+   - `VITE_SUPABASE_PUBLISHABLE_KEY` (your Supabase anon key)
+   - `VITE_API_URL` (your Railway backend URL, e.g., `https://your-backend.up.railway.app`)
+   - `PORT` (optional, Railway sets this automatically)
+7. Deploy
 
-**Build Settings:**
-- Build Command: `npm run build`
-- Output Directory: `dist`
-- Install Command: `npm install`
+**Note:** Railway will automatically:
+- Build the frontend (`npm run build`)
+- Start the server (`npm start`)
+- Serve the static files from `dist/` directory
 
 ### Backend (Railway)
 
-1. Connect your repository
-2. Set root directory to `server/`
-3. Add environment variables:
-   - `GEMINI_API_KEY`
+1. Connect your repository to Railway
+2. Create a new service for the backend
+3. **Root Directory:** Set to `server/`
+4. Add environment variables:
+   - `GEMINI_API_KEY` (your Google Gemini API key)
    - `PORT` (optional, defaults to 3001)
-4. Deploy
+5. Deploy
 
-Update `VITE_API_URL` in frontend `.env` with your Railway URL.
+**Important:** After deploying both services:
+- Copy your backend Railway URL
+- Update `VITE_API_URL` in your frontend Railway service with the backend URL
+- Redeploy the frontend service
 
 ### Database (Supabase)
 
