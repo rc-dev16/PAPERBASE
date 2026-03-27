@@ -1,0 +1,6 @@
+# Node 20+ — @supabase/supabase-js 2.89+ requires Node >= 20. Nixpacks was using Node 18, which led to EBADENGINE / npm ci failures on Railway.
+[variables]
+NIXPACKS_NODE_VERSION = "20"
+
+[phases.setup]
+nixPkgs = ["nodejs_20", "npm-9_x"]

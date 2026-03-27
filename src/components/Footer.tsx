@@ -27,7 +27,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
                 <a
-                href="https://github.com"
+                href="https://github.com/rc-dev16/PAPERBASE"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 border-2 border-white/30 flex items-center justify-center hover:border-[#FF3B30] hover:text-[#FF3B30] transition-colors"

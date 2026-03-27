@@ -2,6 +2,12 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
+// Warn if using localhost in production (likely means VITE_API_URL is not set)
+if (import.meta.env.PROD && API_BASE_URL.includes('localhost')) {
+  console.error('⚠️ VITE_API_URL is not set! Using localhost fallback. Please set VITE_API_URL in Railway environment variables.');
+  console.error('Current API_BASE_URL:', API_BASE_URL);
+}
+
 export interface ExtractedPDFData {
   title?: string | null;
   authors?: string[] | null;
@@ -42,16 +48,23 @@ export interface ExtractionResponse {
  * @returns Extracted PDF data
  */
 export const extractPDFInfo = async (file: File): Promise<ExtractedPDFData> => {
-  try {const formData = new FormData();
+  try {
+    const formData = new FormData();
     formData.append('pdf', file);
 
-    const response = await fetch(`${API_BASE_URL}/api/extract-pdf`, {
+    const url = `${API_BASE_URL}/api/extract-pdf`;
+    console.log('📡 Calling API:', url);
+
+    const response = await fetch(url, {
       method: 'POST',
       body: formData,
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));throw new Error(errorData.error || errorData.message || `HTTP error! status: ${response.status}`);
+      const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+      const errorMessage = errorData.error || errorData.message || `HTTP error! status: ${response.status}`;
+      console.error('❌ API Error:', errorMessage, 'URL:', url);
+      throw new Error(errorMessage);
     }
 
     const result: ExtractionResponse = await response.json();
